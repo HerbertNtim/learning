@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-
+import authRouter from './routes/authRoutes';
 
 // CONFIGURATIONS
 dotenv.config()
@@ -16,6 +16,9 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin'}))
 app.use(morgan('common'))
 app.use(cookieParser())
+
+// ROUTES
+app.use('/vibechat/auth', authRouter)
 
 // SERVER 
 const port = process.env.PORT || 3000;

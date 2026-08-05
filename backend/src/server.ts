@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import authRouter from './routes/authRoutes';
+import { authRouter } from './routes'
 
 // CONFIGURATIONS
 dotenv.config()

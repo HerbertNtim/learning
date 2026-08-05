@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && npx tsc",
-    "start": "npm run build && node dist/server.js",
+    "start": "node dist/server.js",
     "dev": "npm run build && concurrently \"npx tsc -w\" \"nodemon --exec tsx src/server.ts\""
   },
   "keywords": [],

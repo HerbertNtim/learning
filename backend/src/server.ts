@@ -7,6 +7,7 @@ import fs from "fs";
 import path from "path";
 
 import { authRouter } from "./routes";
+import { connectToDatabase } from "./lib/database";
 
 // CONFIGURATIONS
 dotenv.config();
@@ -61,4 +62,6 @@ app.listen(PORT, () => {
   console.log(
     `Server running on port ${PORT} in ${NODE_ENV} mode`
   );
+
+  connectToDatabase()
 });

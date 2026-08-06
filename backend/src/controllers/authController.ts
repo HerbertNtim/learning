@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { SignupTypes } from "../types/type";
 import User from "../models/User";
+import { generateToken } from "../lib/utils";
 
 export const SignUp = async (req: Request, res: Response) => {
   const { username, email, password } = (req.body as unknown as SignupTypes) || ({} as SignupTypes);
@@ -34,7 +35,7 @@ export const SignUp = async (req: Request, res: Response) => {
 
     if (newUser) {
       const savedUser = await newUser.save();
-      generateToken(savedUser._id, res); // Assuming generateToken is defined elsewhere
+      generateToken(savedUser._id.toString(), res); // Assuming generateToken is defined elsewhere
 
       res.status(201).json({ message: "User created successfully", user: savedUser });
     }

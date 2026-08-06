@@ -51,7 +51,7 @@ app.get("/health", (_req, res) => {
 if (isProduction) {
   app.use(express.static(frontendDistPath));
 
-  app.get("*", (_req, res) => {
+  app.get(/(.*)/, (_req, res) => {
     res.sendFile(path.join(frontendDistPath, "index.html"));
   });
 }

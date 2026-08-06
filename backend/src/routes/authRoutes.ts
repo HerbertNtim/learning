@@ -1,9 +1,8 @@
 import express from 'express';
+import { Signup } from '../controllers/authController';
 
 const authRouter = express.Router()
 
-authRouter.get('/login', (req, res) => {
-  res.send("Welcome to Vibe chat application, Vibes")
-})
+authRouter.post('/signup', Signup )
 
 export default authRouter

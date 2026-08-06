@@ -4,7 +4,7 @@ import { SignupTypes } from "../types/type";
 import User from "../models/User";
 import { generateToken } from "../lib/utils";
 
-export const SignUp = async (req: Request, res: Response) => {
+export const Signup = async (req: Request, res: Response) => {
   const { username, email, password } = (req.body as unknown as SignupTypes) || ({} as SignupTypes);
 
   try {

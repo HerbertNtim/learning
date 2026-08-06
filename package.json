@@ -6,6 +6,8 @@
   "scripts": {
     "install:all": "npm install --prefix backend --include=dev && npm install --prefix frontend --include=dev",
     "build": "npm run install:all && npm run build --prefix frontend && npm run build --prefix backend",
+    "postinstall": "npm run install:all && npm run build --prefix frontend && npm run build --prefix backend",
+    "prestart": "npm run build --prefix backend",
     "start": "npm run start --prefix backend"
   },
   "repository": {

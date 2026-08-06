@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import fs from "fs";
 import path from "path";
 
 import { authRouter } from "./routes";
@@ -14,7 +15,10 @@ const PORT = process.env.PORT || 3000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 const isProduction = NODE_ENV === "production";
 
-const __dirname = path.resolve();
+const cwd = process.cwd();
+const frontendDistPath = fs.existsSync(path.resolve(cwd, "frontend/dist"))
+  ? path.resolve(cwd, "frontend/dist")
+  : path.resolve(cwd, "../frontend/dist");
 
 const app = express();
 
@@ -45,12 +49,10 @@ app.get("/health", (_req, res) => {
 
 // SERVE FRONTEND IN PRODUCTION
 if (isProduction) {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(frontendDistPath));
 
   app.get("*", (_req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../frontend/dist/index.html")
-    );
+    res.sendFile(path.join(frontendDistPath, "index.html"));
   });
 }
 

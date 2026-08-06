@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "start": "node dist/server.js",
+    "start": "node start.cjs",
     "dev": "npm run build && concurrently \"npx tsc -w\" \"nodemon --exec tsx src/server.ts\""
   },
   "keywords": [],

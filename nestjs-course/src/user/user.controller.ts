@@ -13,20 +13,17 @@ export class UserController {
   }
 
   @Get(":id")
-  getUserById(@Param("id") id: number) {
-    this.userService.getUserById(id)
+  getUserById(@Param("id") id: string): unknown {
+    return this.userService.getUserById(Number(id))
   }
 
   @Post()
-  createUser(@Body() createUserDto: CreateUserDto) {
-    return { data: createUserDto, message: "User Created Successfully"}
+  createUser(@Body() createUserDto: CreateUserDto): unknown {
+    return this.userService.createUser(createUserDto)
   }
 
   @Put("id")
-  updateUser(@Param("id") id: string, @Body() updatedUserDto: UpdateUserDto) {
-    return {
-      data: {id, ...updatedUserDto},
-      message: "User Updated Successfully"
-    }
+  updateUser(@Param("id") id: string, @Body() updatedUserDto: UpdateUserDto): unknown {
+    return this.userService.updateUser(Number(id), updatedUserDto);
   }
 }
